@@ -9,9 +9,6 @@ Pour convertir le programme Python en un exécutable, suivez ces étapes :
 1. Assurez-vous d'avoir installé PyInstaller en exécutant `pip install pyinstaller` dans votre terminal.
 2. Utilisez le script suivant pour générer l'exécutable :
 
-![Generate key](image.png)
-![Generate key](image2.png)
-![Generate key](image3.png)
 
 ```python
 import PyInstaller.__main__
@@ -24,3 +21,8 @@ PyInstaller.__main__.run([
  '--icon=convert.ico',  # Chemin de l'icône de l'application (facultatif)
 ])
 ```
+
+## Présentation 
+![Generate key](image.png)
+![Generate key](image2.png)
+![Generate key](image3.png)
