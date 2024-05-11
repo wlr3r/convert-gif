@@ -8,7 +8,7 @@ import uuid
 import subprocess
 
 ACCESS_KEY_FILE = "access_key.txt"
-WEBHOOK_URL = "https://discord.com/api/webhooks/1238577456827334656/e1gMp2TstQ56pvSvQsX-tLb0BKkVooSrVGnC91uGS1dmbJG5FWe6kkI3PXyS_bgChe9D"
+WEBHOOK_URL = "WEBHOOK HERE"
 
 cle_entree = None
 
